@@ -1,6 +1,6 @@
 import { lazy, useContext, Suspense } from 'react';
-import { RiGitRepositoryLine } from 'react-icons/ri';
 import Input from './components/Input';
+import NotFound from './components/NotFound.';
 import Spinner from './components/Spinner/index';
 import { RepositoryContext } from './contexts/RepositoryContext';
 import useDataNotFound from './hooks/useDataNotFound';
@@ -28,21 +28,14 @@ function App() {
               An easy way to find an open source contributor from a repository
             </p>
           </div>
-          <Input placeholder="Type a repository name..." />
+          <Input button placeholder="Type a repository name..." />
         </section>
         <section className="w-full flex flex-col items-center">
           {isLoading ? (
             <Spinner />
           ) : (
             secondLoading &&
-            !repoData && (
-              <div className="flex items-center">
-                <RiGitRepositoryLine size="30px" />
-                <p className="ml-1 font-lalezar uppercase tracking-wide">
-                  Repository not found!
-                </p>
-              </div>
-            )
+            !repoData && <NotFound>Repository not found!</NotFound>
           )}
           <Suspense fallback={<Spinner />}>
             {repoData && <Contributors />}
