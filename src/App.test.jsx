@@ -1,9 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import React from 'react';
-import RepositoryProvider, {
-  RepositoryContext,
-} from './contexts/RepositoryContext';
+import RepositoryProvider from './contexts/RepositoryContext';
 import App from './App';
 
 describe('App', () => {
@@ -14,12 +12,12 @@ describe('App', () => {
       </RepositoryProvider>
     );
 
-  const renderAppWithProvider = (value) =>
-    render(
-      <RepositoryContext.Provider value={value}>
-        <App />
-      </RepositoryContext.Provider>
-    );
+  const clickSearchButton = () => {
+    fireEvent.change(screen.getByPlaceholderText('Type a repository name...'), {
+      target: { value: 'find-contributors' },
+    });
+    fireEvent.click(screen.getByText('Search'));
+  };
 
   it('should render main page', () => {
     renderApp();
@@ -28,7 +26,9 @@ describe('App', () => {
   });
 
   it('should render loading spinner', () => {
-    renderAppWithProvider({ isLoading: true });
+    renderApp();
+
+    clickSearchButton();
 
     expect(screen.getByTestId('spinner')).toBeInTheDocument();
   });
@@ -36,10 +36,7 @@ describe('App', () => {
   it('should search repository', async () => {
     renderApp();
 
-    fireEvent.change(screen.getByPlaceholderText('Type a repository name...'), {
-      target: { value: 'find-contributors' },
-    });
-    fireEvent.click(screen.getByText('Search'));
+    clickSearchButton();
 
     expect(await screen.findByTestId('contributors-div')).toBeInTheDocument();
   });

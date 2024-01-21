@@ -1,7 +1,7 @@
 import { useContext } from 'react';
-import GitHubStats from './GitHubStats';
-import { RepositoryContext } from '../contexts/RepositoryContext';
-import Spinner from './Spinner';
+import GitHubStats from '../GitHubStats';
+import { RepositoryContext } from '../../contexts/RepositoryContext';
+import Spinner from '../Spinner';
 
 function Repositories() {
   const { repoData, isLoading } = useContext(RepositoryContext);
