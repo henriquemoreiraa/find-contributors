@@ -1,8 +1,8 @@
 import { useContext } from 'react';
-import useBoolean from '../hooks/useBoolean';
-import Button from './Button';
-import Input from './Input';
-import { ContributorsContext } from '../contexts/ContributorsContext';
+import useBoolean from '../../hooks/useBoolean';
+import Button from '../Button';
+import Input from '../Input';
+import { ContributorsContext } from '../../contexts/ContributorsContext';
 
 function FilterContributors() {
   const { isBoolean, setIsBoolean } = useBoolean();

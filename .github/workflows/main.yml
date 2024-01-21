@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: [16.x]
+        node: [18.x]
 
     steps:
       - uses: actions/checkout@v3
@@ -22,5 +22,7 @@ jobs:
         run: yarn install
       - name: Run ESLint
         run: yarn lint
+      - name: Run test
+        run: yarn vitest run
       - name: Run build
         run: yarn build
