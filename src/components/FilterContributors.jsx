@@ -10,7 +10,7 @@ function FilterContributors() {
     useContext(ContributorsContext);
 
   return (
-    <div className=" flex items-center max-w-2xl w-full bg-bgGray rounded-t-lg rounded-tl-lg py-1 px-2">
+    <div className="flex items-center w-full bg-bgGray rounded-t-lg rounded-tl-lg py-1 px-2">
       {!isBoolean && (
         <div className="flex w-full sm:w-2/4">
           <Button

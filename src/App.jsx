@@ -1,17 +1,15 @@
+/* eslint-disable no-nested-ternary */
 import { lazy, useContext, Suspense } from 'react';
 import Input from './components/Input';
 import NotFound from './components/NotFound.';
 import Spinner from './components/Spinner/index';
 import { RepositoryContext } from './contexts/RepositoryContext';
-import useDataNotFound from './hooks/useDataNotFound';
 import ContributorsProvider from './contexts/ContributorsContext';
 
 const Contributors = lazy(() => import('./components/Contributors'));
 
 function App() {
   const { repoData, isLoading } = useContext(RepositoryContext);
-
-  const { secondLoading } = useDataNotFound({ isLoading });
 
   return (
     <div className="flex justify-center">
@@ -34,15 +32,15 @@ function App() {
         <section className="w-full flex flex-col items-center">
           {isLoading ? (
             <Spinner />
+          ) : typeof repoData === 'string' ? (
+            <NotFound>{repoData}</NotFound>
           ) : (
-            secondLoading &&
-            !repoData && <NotFound>Repository not found!</NotFound>
+            <Suspense fallback={<Spinner />}>
+              <ContributorsProvider>
+                {repoData && <Contributors />}
+              </ContributorsProvider>
+            </Suspense>
           )}
-          <Suspense fallback={<Spinner />}>
-            <ContributorsProvider>
-              {repoData && <Contributors />}
-            </ContributorsProvider>
-          </Suspense>
         </section>
       </div>
     </div>

@@ -7,10 +7,12 @@
     "dev": "vite",
     "lint": "eslint './**/*.{js,jsx}' --ignore-path .gitignore",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest run",
+    "testw": "vitest"
   },
   "dependencies": {
-    "@vitejs/plugin-react": "^3.1.0",
+    "@vitejs/plugin-react": "^4.2.1",
     "axios": "^1.3.4",
     "numeral": "^2.0.6",
     "react": "^18.2.0",
@@ -20,6 +22,8 @@
     "vite": "^4.1.0"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.2.0",
+    "@testing-library/react": "^14.1.2",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "autoprefixer": "^10.4.13",
@@ -29,8 +33,10 @@
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-react": "^7.32.2",
+    "jsdom": "^23.2.0",
     "postcss": "^8.4.21",
     "prettier": "^2.8.4",
-    "tailwindcss": "^3.2.7"
+    "tailwindcss": "^3.2.7",
+    "vitest": "^1.2.1"
   }
 }
