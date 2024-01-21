@@ -3,6 +3,9 @@ import api from '.';
 export const fetcher = async ({ key, checkBox }) => {
   if (key) {
     const { data } = await api.get(`${key}`);
+    if (data.items.length === 0) {
+      return 'Repository not found!';
+    }
     return checkBox ? data : data.items[0];
   }
   return null;

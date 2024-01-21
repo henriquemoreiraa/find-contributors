@@ -16,9 +16,9 @@ function Contributors() {
   }
 
   return (
-    <>
+    <div data-testid="contributors-div" className="max-w-2xl w-full">
       <FilterContributors />
-      <div className="flex flex-col justify-center max-w-2xl w-full sm:w-full bg-bgblue rounded-b-lg rounded-bl-lg border-x border-b border-bgblue2  pt-3">
+      <div className="flex flex-col justify-center w-full sm:w-full bg-bgblue rounded-b-lg rounded-bl-lg border-x border-b border-bgblue2  pt-3">
         <Repositories />
         {isListContributors ? (
           <ContributorsResponse />
@@ -26,7 +26,7 @@ function Contributors() {
           <ContributorsBubbleResponse />
         )}
       </div>
-    </>
+    </div>
   );
 }
 
